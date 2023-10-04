@@ -24,7 +24,7 @@ const CargoPage = () => {
     const [carregando, setCarregando] = useState(false);
     const [modal, setModal] = useState<boolean>(false);
     const [atualizar, setAtualizar] = useState<boolean>(false);
-    const [filtrosPesquisa, setFiltrosPesquisa] = useState<FiltroPesquisa>({
+    const [filtrosPesquisa, setFiltrosPesquisa] = useState<any>({
         nome: '',
         status: 1,
         quantidade: 10,
