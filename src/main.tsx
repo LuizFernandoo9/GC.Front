@@ -10,7 +10,7 @@ import { AuthProvider } from './Context/AuthProvider';
 const Indexpage = lazy(() => import('./Components/indexpage/Indexpage'));
 const Auth = lazy(() => import('./Authentication/Auth'));
 const LoginColaborador = lazy(() => import('./Authentication/LoginColaborador'));
-const LoginPaciente = lazy(() => import('./Authentication/LoginPaciente'));
+//const LoginPaciente = lazy(() => import('./Authentication/LoginPaciente'));
 
 
 const CargoPage = lazy(() => import('./Pages/CargoPage/CargoPage'));
@@ -34,7 +34,6 @@ root.render(
 
             {/* Authentication Routes */}
             <Route path={`${import.meta.env.BASE_URL}loginPaciente`} element={<Auth />}>
-              <Route index element={<LoginPaciente />} />
             </Route>
 
             <Route path={`${import.meta.env.BASE_URL}`} element={<App />}>
