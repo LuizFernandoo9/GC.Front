@@ -5,7 +5,9 @@ import App from './App'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.scss';
 import Loader from './Components/Layouts/Loader/Loader';
+
 import { AuthProvider } from './Context/AuthProvider';
+import ColaboradorPage from './Pages/ColaboradorPage/ColaboradorPage';
 
 const Indexpage = lazy(() => import('./Components/indexpage/Indexpage'));
 const Auth = lazy(() => import('./Authentication/Auth'));
@@ -16,7 +18,7 @@ const LoginColaborador = lazy(() => import('./Authentication/LoginColaborador'))
 const CargoPage = lazy(() => import('./Pages/CargoPage/CargoPage'));
 
 
-const container: any = document.getElementById('root');
+const container: any = document.getElementById('root'); 
 
 const root = createRoot(container);
 
@@ -43,6 +45,10 @@ root.render(
               {/* Pages - Cadastro */}
               <Route>
                 <Route path={`${import.meta.env.BASE_URL}cargo`} element={<CargoPage />} />
+              </Route>
+
+              <Route>
+                <Route path={`${import.meta.env.BASE_URL}colaborador`} element={<ColaboradorPage />} />
               </Route>
             </Route>
 

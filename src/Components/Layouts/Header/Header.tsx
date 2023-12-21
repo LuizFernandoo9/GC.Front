@@ -340,11 +340,8 @@ const Header = () => {
 													</div>
 												</div>
 											</div>
-											<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}pages/profile`}><i className="bx bx-user-circle"></i>Profile</Dropdown.Item>
-											<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}pages/editprofile`}><i className="bx bx-cog"></i> Edit Profile</Dropdown.Item>
-											<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}pages/mail/mail`}><i className="bx bxs-inbox"></i>Inbox</Dropdown.Item>
-											<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}pages/mail/chat`}><i className="bx bx-envelope"></i>Messages</Dropdown.Item>
-											<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}pages/settings`}><i className="bx bx-slider-alt"></i> Account Settings</Dropdown.Item>
+											<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}pages/profile`}><i className="bx bx-user-circle"></i>Perfil</Dropdown.Item>
+											<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}colaborador`}><i className="bx bx-cog"></i> Editar Perfil</Dropdown.Item>
 											{user.tipo == 2 &&
 												<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}loginColaborador`}><i className="bx bx-log-out"></i> Sair</Dropdown.Item>}
 											{user.tipo == 1 &&
