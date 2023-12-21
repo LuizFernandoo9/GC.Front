@@ -12,7 +12,8 @@ const Indexpage = () => {
 		id: 0,
 		nome: "",
 		permissao: 1,
-		status: 0
+		status: 0,
+		tipo:0,
 	});
 
 	useEffect(() => {

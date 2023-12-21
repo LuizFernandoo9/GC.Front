@@ -13,7 +13,8 @@ interface IAuthContext {
     isAuthorized: boolean,
     loading: boolean,
     signOut: () => Promise<void>,
-    signIn: (email: string, password: string) => Promise<void>,
+    loginColaborador: (email: string, password: string) => Promise<void>,
+    loginPaciente: (email: string, password: string) => Promise<void>,
     user?: IUsuarioAutenticacao
 }
 
@@ -47,9 +48,30 @@ export const AuthProvider = ({ children }: any) => {
     }
 
 
-    const signIn = async (email: string, codigo: string) => {
+    const loginColaborador = async (email: string, codigo: string) => {
         try {
-            const result = await AuthService.signIn(email, codigo);
+            const result = await AuthService.loginColaborador(email, codigo);
+
+            if (result === null) throw new Error("Tratar erro");
+
+            await Storage.setToken(result.token);
+
+            await Storage.setUser(result.usuario);
+
+            setUser(result.usuario);
+
+            setAuthorized(true);
+
+            routeIndex();
+
+        } catch (error) {
+            errorTostify("Acesso negado!");
+            setAuthorized(false);
+        }
+    }
+    const loginPaciente = async (email: string, codigo: string) => {
+        try {
+            const result = await AuthService.loginPaciente(email, codigo);
 
             if (result === null) throw new Error("Tratar erro");
 
@@ -81,7 +103,7 @@ export const AuthProvider = ({ children }: any) => {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthorized, loading, signOut, user, signIn }}>
+        <AuthContext.Provider value={{ isAuthorized, loading, signOut, user, loginColaborador, loginPaciente }}>
             {children}
         </AuthContext.Provider>
     )
@@ -96,5 +118,3 @@ export const urlLogoAuth = () => {
     const context = useContext<IAuthContext | any>(AuthContext);
     return context as IAuthContext;
 }
-
-

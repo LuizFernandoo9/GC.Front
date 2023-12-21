@@ -63,7 +63,19 @@
     }
 }
 
+/* styles.css */
 
+.bg-image-container {
+    background-image: url('path/to/your/image.jpg'); /* Replace with the path to your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .bg-image {
+    background-color: transparent; /* Remove white background */
+  }
+  
 
 .nav .nav-item .countries .dropdown-menu {
     min-width: 152px;

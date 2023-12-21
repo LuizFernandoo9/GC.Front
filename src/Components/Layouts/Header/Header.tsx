@@ -4,6 +4,8 @@ import { Dropdown, InputGroup, ListGroup, Nav, Navbar } from 'react-bootstrap';
 import Scrollbars from 'react-custom-scrollbars';
 import { MENUITEMS } from "../Sidebar/SideBarMenu"
 
+import Storage from '../../../utils/StorageUtils';
+
 // pictures
 import logo from '../../../assets/img/brand/logo.png';
 import logoWhite from '../../../assets/img/brand/logo-white.png';
@@ -13,19 +15,19 @@ import { Link, useLocation } from 'react-router-dom';
 
 import ProfileService from '../../CommonFileComponents/service/profile';
 import EditProfileService from '../../CommonFileComponents/service/edit-profile';
+import IUsuarioAutenticacao from '../../../Interfaces/IUsuarioAutenticacao';
 
 
 const SideMenuIcon = () => document.querySelector(".app")?.classList.toggle("sidenav-toggled");
 
 const Searchbar = () => document.querySelector(".navbar-form")?.classList.toggle('active');
 
-
 // Darkmode
 const DarkMode = () => {
 	if (document.querySelector(".app")?.classList.contains('dark-theme')) {
 
 		document.querySelector(".app")?.classList.remove('dark-theme');
-		
+
 		let DarkMenu1: any = document.querySelector("#myonoffswitch2") //dark -theme
 		DarkMenu1.checked = true;
 		let DarkMenu2: any = document.querySelector("#myonoffswitch5") //dark -menu
@@ -36,7 +38,7 @@ const DarkMode = () => {
 	else {
 
 		document.querySelector(".app")?.classList.add('dark-theme');
-		
+
 		let DarkMenu1: any = document.querySelector("#myonoffswitch2") //dark -theme
 		DarkMenu1.checked = true;
 		let DarkMenu2: any = document.querySelector("#myonoffswitch5") //dark -menu
@@ -80,6 +82,21 @@ const Header = () => {
 	const [searchcolor, setsearchcolor] = useState("text-dark");
 	const [searchval, setsearchval] = useState("Type something");
 	const [NavData, setNavData] = useState([]);
+
+	const User = async () => setUser(await Storage.getUser() || user);
+	const [user, setUser] = useState<IUsuarioAutenticacao>({
+		email: "",
+		empresaId: 0,
+		id: 0,
+		nome: "",
+		permissao: 1,
+		status: 0,
+		tipo:0,
+	});
+
+	useEffect(() => {
+		User();
+	}, []);
 
 	let myfunction = (inputvalue) => {
 
@@ -328,7 +345,10 @@ const Header = () => {
 											<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}pages/mail/mail`}><i className="bx bxs-inbox"></i>Inbox</Dropdown.Item>
 											<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}pages/mail/chat`}><i className="bx bx-envelope"></i>Messages</Dropdown.Item>
 											<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}pages/settings`}><i className="bx bx-slider-alt"></i> Account Settings</Dropdown.Item>
-											<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}`}><i className="bx bx-log-out"></i> Sign Out</Dropdown.Item>
+											{user.tipo == 2 &&
+												<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}loginColaborador`}><i className="bx bx-log-out"></i> Sair</Dropdown.Item>}
+											{user.tipo == 1 &&
+												<Dropdown.Item className="dropdown-item" href={`${import.meta.env.BASE_URL}loginPaciente`}><i className="bx bx-log-out"></i> Sair</Dropdown.Item>}
 										</Dropdown.Menu>
 									</Dropdown>
 								</Nav>

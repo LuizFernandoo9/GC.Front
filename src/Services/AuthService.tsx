@@ -3,16 +3,14 @@ import api from "./Api";
 
 class AuthService {
 
-    async signIn(email: string, senha: string): Promise<IAutenticacao> {
-        let { data: result } = await api.post<IAutenticacao>('Autenticacao', { email, senha });
+    async loginColaborador(email: string, senha: string): Promise<IAutenticacao> {
+        let { data: result } = await api.post<IAutenticacao>('Autenticacao/loginColaborador', { email, senha });
         return result;
     }
-
-    async teste(): Promise<boolean> {
-        let { data: result } = await api.get<any>('CentroCusto/Paginar/1/10');
+    async loginPaciente(email: string, senha: string): Promise<IAutenticacao> {
+        let { data: result } = await api.post<IAutenticacao>('Autenticacao/loginPaciente', { email, senha });
         return result;
     }
-
     async resetPassword(email: string): Promise<void> {
         await api.put<IAutenticacao>('Usuario/ResetarSenha', { email });
     }

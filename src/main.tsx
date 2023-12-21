@@ -9,7 +9,9 @@ import { AuthProvider } from './Context/AuthProvider';
 
 const Indexpage = lazy(() => import('./Components/indexpage/Indexpage'));
 const Auth = lazy(() => import('./Authentication/Auth'));
-const SignIn = lazy(() => import('./Authentication/SignIn'));
+const LoginColaborador = lazy(() => import('./Authentication/LoginColaborador'));
+const LoginPaciente = lazy(() => import('./Authentication/LoginPaciente'));
+
 
 const CargoPage = lazy(() => import('./Pages/CargoPage/CargoPage'));
 
@@ -26,9 +28,13 @@ root.render(
           <Routes>
 
             {/* Authentication Routes */}
-            <Route path={`${import.meta.env.BASE_URL}`} element={<Auth />}>
-              <Route index element={<SignIn />} />
-              <Route path={`${import.meta.env.BASE_URL}FirebaseAuthentication/FirebaseSignIn`} element={<SignIn />} />
+            <Route path={`${import.meta.env.BASE_URL}loginColaborador`} element={<Auth />}>
+              <Route index element={<LoginColaborador />} />
+            </Route>
+
+            {/* Authentication Routes */}
+            <Route path={`${import.meta.env.BASE_URL}loginPaciente`} element={<Auth />}>
+              <Route index element={<LoginPaciente />} />
             </Route>
 
             <Route path={`${import.meta.env.BASE_URL}`} element={<App />}>

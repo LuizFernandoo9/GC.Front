@@ -5,4 +5,5 @@ export default interface IUsuarioAutenticacao {
     empresaId: number,
     permissao: number,
     status:number,
+    tipo:number,
 }

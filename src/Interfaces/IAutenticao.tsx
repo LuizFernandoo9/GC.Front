@@ -10,4 +10,5 @@ interface IUsuario {
     empresaId: number,
     permissao: number,
     status:number,
+    tipo:number,
 }
